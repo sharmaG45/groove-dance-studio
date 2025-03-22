@@ -170,12 +170,22 @@ const HomePage = () => {
             <div className="relative w-full bg-gray-100 py-16 px-6 md:px-12 flex flex-col md:flex-row items-center gap-8 transition-all duration-700">
                 <div className="w-full md:w-1/2 space-y-6">
                     <h1 className="text-4xl md:text-5xl font-extrabold italic text-gray-800">
-                        About <span className="text-gray-700">Kings</span>
+                        About <span className="text-gray-700">Groove to Move</span>
                     </h1>
-                    <p className="text-lg text-gray-700 leading-relaxed">
-                        At The Kings, we don’t just dance; we elevate it to an art form. Established in Mumbai,
-                        our dance studio is a community where passion meets excellence.
+                    <p className="text-lg sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed text-center sm:text-left px-4 sm:px-0">
+                        <span className="font-semibold">Groove to Move – Patna’s Premier Dance Studio</span>
+                        <br />
+                        At <span className="font-semibold">Groove to Move</span>, we don’t just teach dance—we create an experience!
+                        As Patna’s leading dance studio, we bring passion, energy, and excellence to every move.
+                        Our lead choreographer, <span className="font-semibold">Vishal Vishwakarma</span>, has been professionally trained by
+                        <span className="font-semibold"> Kings United India</span>, ensuring top-notch guidance in various dance forms.
+                        <br /><br />
+                        Whether you're a beginner looking to explore the joy of dance or an advanced dancer aiming to refine your skills,
+                        we provide the perfect platform to grow and express yourself. Join us and step into a world where rhythm meets perfection!
+                        <br /><br />
+                        <span className="block text-xl sm:text-2xl font-bold text-gray-900">Dance. Express. Elevate.</span>
                     </p>
+
                     <button className="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all duration-300">
                         Know More
                     </button>
