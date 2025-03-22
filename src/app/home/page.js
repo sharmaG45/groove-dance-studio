@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FiMenu, FiX } from "react-icons/fi";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,11 +13,13 @@ import { EffectFade, Autoplay, Navigation, Pagination } from 'swiper/modules';
 const HomePage = () => {
     const [showMenu, setShowMenu] = useState(false);
 
-    const [activeDropdown, setActiveDropdown] = useState(null);
+    const router = useRouter();
 
-    const toggleDropdown = (menu) => {
-        setActiveDropdown(activeDropdown === menu ? null : menu);
-    };
+    const handleAbout = () => {
+        router.push('/home/about-us');
+    }
+
+
 
     const slides = [
         "/assets/images/pic1.jpg",
@@ -103,16 +106,11 @@ const HomePage = () => {
                             <ul className="flex space-x-6">
                                 <li><a href="/" className="hover:text-yellow-500">Home</a></li>
                                 <li className="relative group">
-                                    <a href="/about" className="hover:text-yellow-500">About Us</a>
-                                    <div className="absolute left-0 mt-2 hidden group-hover:block bg-black shadow-lg rounded-md w-48">
-                                        <ul className="p-2 space-y-2">
-                                            <li><a href="/about/team" className="block px-4 py-2 hover:bg-gray-700">Our Team</a></li>
-                                            <li><a href="/about/history" className="block px-4 py-2 hover:bg-gray-700">Our History</a></li>
-                                        </ul>
-                                    </div>
+                                    <a href="/home/about-us" className="hover:text-yellow-500">About Us</a>
+
                                 </li>
                                 <li className="relative group">
-                                    <a href="/studio" className="hover:text-yellow-500">Groove To Move Studio</a>
+                                    <a href="/home/studio" className="hover:text-yellow-500">Groove To Move Studio</a>
                                     <div className="absolute left-0 mt-2 hidden group-hover:block bg-black shadow-lg rounded-md w-48">
                                         <ul className="p-2 space-y-2">
                                             <li><a href="/studio/classes" className="block px-4 py-2 hover:bg-gray-700">Classes</a></li>
@@ -121,14 +119,11 @@ const HomePage = () => {
                                     </div>
                                 </li>
                                 <li className="relative group">
-                                    <a href="/book" className="hover:text-yellow-500">Services</a>
+                                    <a href="/home/services" className="hover:text-yellow-500">Services</a>
 
                                 </li>
-                                <li className="relative group">
-                                    <a href="/book" className="hover:text-yellow-500">Courses</a>
 
-                                </li>
-                                <li><a href="/contact" className="hover:text-yellow-500">Contact Us</a></li>
+                                <li><a href="/home/contact-us" className="hover:text-yellow-500">Contact Us</a></li>
                             </ul>
                         </nav>
 
@@ -145,11 +140,11 @@ const HomePage = () => {
                         <div className="md:hidden bg-gray-900 text-white p-4 mt-2">
                             <ul className="space-y-3 text-center">
                                 <li><a href="/" className="block py-2">Home</a></li>
-                                <li><a href="/about" className="block py-2">About Us</a></li>
-                                <li><a href="/studio" className="block py-2">Groove To Move Studio</a></li>
-                                <li><a href="/book" className="block py-2">Services</a></li>
-                                <li><a href="/book" className="block py-2">Courses</a></li>
-                                <li><a href="/contact" className="block py-2">Contact Us</a></li>
+                                <li><a href="/home/about-us" className="block py-2">About Us</a></li>
+                                <li><a href="/home/studio" className="block py-2">Groove To Move Studio</a></li>
+                                <li><a href="/home/services" className="block py-2">Services</a></li>
+
+                                <li><a href="/home/contact-us" className="block py-2">Contact Us</a></li>
                             </ul>
                         </div>
                     )}
@@ -159,7 +154,7 @@ const HomePage = () => {
                 <div className="relative z-10 flex flex-col items-center justify-center text-center h-full text-white px-4 sm:px-8 md:px-12 lg:px-24">
                     <h2 className="text-2xl sm:text-4xl font-semibold">Welcome to</h2>
                     <h1 className="text-4xl sm:text-6xl font-bold">The Groove to Move</h1>
-                    <h2 className="text-lg sm:text-2xl">Patna's Leading Dance Company</h2>
+                    <h2 className="text-lg sm:text-2xl">Patna's Leading Dance Academy</h2>
                     <a href="#" className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-lg transition-all duration-300">
                         Book Us Now
                     </a>
@@ -186,7 +181,7 @@ const HomePage = () => {
                         <span className="block text-xl sm:text-2xl font-bold text-gray-900">Dance. Express. Elevate.</span>
                     </p>
 
-                    <button className="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all duration-300">
+                    <button className="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all duration-300" onClick={handleAbout}>
                         Know More
                     </button>
                 </div>
