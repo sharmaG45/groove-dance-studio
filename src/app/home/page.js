@@ -31,7 +31,7 @@ const HomePage = () => {
     const courses = [
         {
             title: "KINGS GOLDEN PASS - ONE YEAR UNLIMITED ACCESS",
-            description: "Enjoy a year of unlimited dance training at Kings Dance Studio! Access all courses and workshops, compete in in-house events, and customize your schedule. Explore styles like Hip-hop, Ballet, Contemporary, and more.",
+            description: "Enjoy a year of unlimited dance training at Groove To Move Studio! Access all courses and workshops, compete in in-house events, and customize your schedule. Explore styles like Hip-hop, Ballet, Contemporary, and more.",
             image: "https://your-image-url-1.jpg",
         },
         {
@@ -66,7 +66,7 @@ const HomePage = () => {
             title: "Variety of Dance Styles",
             icon: "https://kingsunitedindia.com/wp-content/uploads/slider4/slide1icon.png",
             description:
-                "From ballet and jazz to hip-hop and contemporary, Kings Dance Studio offers a diverse range of dance styles to cater to different interests and preferences. Explore new genres, challenge yourself creatively, and discover the joy of expression through movement.",
+                "From ballet and jazz to hip-hop and contemporary, Groove To Move Studio offers a diverse range of dance styles to cater to different interests and preferences. Explore new genres, challenge yourself creatively, and discover the joy of expression through movement.",
         },
         {
             title: "Performance Opportunities",
@@ -155,7 +155,7 @@ const HomePage = () => {
                     <h2 className="text-2xl sm:text-4xl font-semibold">Welcome to</h2>
                     <h1 className="text-4xl sm:text-6xl font-bold">The Groove to Move</h1>
                     <h2 className="text-lg sm:text-2xl">Patna's Leading Dance Academy</h2>
-                    <a href="#" className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-lg transition-all duration-300">
+                    <a href="/home/booking-details" className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-lg transition-all duration-300">
                         Book Us Now
                     </a>
                 </div>
@@ -251,7 +251,6 @@ const HomePage = () => {
                 </Swiper>
             </div>
 
-
             {/* Studio Showcase */}
             <div className="relative w-full bg-gray-900 text-center py-12">
                 <svg className="absolute top-0 left-0 w-full" viewBox="0 0 1440 320">
@@ -289,7 +288,6 @@ const HomePage = () => {
             </div>
 
             {/* Our Courses */}
-
             <div className="relative py-16">
                 {/* Background Image with Overlay */}
                 <div

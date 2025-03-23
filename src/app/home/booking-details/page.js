@@ -1,11 +1,19 @@
 'use client';
 
 import { useState } from "react";
-import { FiMenu, FiX, FiFacebook, FiInstagram, FiTwitter, FiYoutube } from "react-icons/fi";
-const contact = () => {
+import { FiMenu, FiX } from "react-icons/fi";
 
+const ServicesPage = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [formData, setFormData] = useState({
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        mobileNumber: "",
+        email: "",
+        message: "",
+        category: ""
+    });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,13 +21,13 @@ const contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Form submitted successfully!");
+        console.log("Form submitted:", formData);
     };
+
 
     const slides = ["/assets/images/pic1.jpg"];
 
-    return <>
-
+    return (
         <section className="relative w-full min-h-screen overflow-hidden flex flex-col items-center">
             {/* Background Container */}
             <div className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out" style={{ backgroundImage: `url(${slides})` }}></div>
@@ -34,7 +42,6 @@ const contact = () => {
                             <li><a href="/" className="hover:text-yellow-500">Home</a></li>
                             <li className="relative group">
                                 <a href="/home/about-us" className="hover:text-yellow-500">About Us</a>
-
                             </li>
                             <li className="relative group">
                                 <a href="/home/studio" className="hover:text-yellow-500">Groove To Move Studio</a>
@@ -61,7 +68,7 @@ const contact = () => {
                     <div className="md:hidden bg-gray-900 text-white p-4 mt-2">
                         <ul className="space-y-3 text-center">
                             <li><a href="/" className="block py-2">Home</a></li>
-                            <li><a href="/homw/about-us" className="block py-2">About Us</a></li>
+                            <li><a href="/home/about-us" className="block py-2">About Us</a></li>
                             <li><a href="/home/studio" className="block py-2">Studio</a></li>
                             <li><a href="/home/services" className="block py-2">Services</a></li>
                             <li><a href="/home/contact-us" className="block py-2">Contact Us</a></li>
@@ -70,35 +77,31 @@ const contact = () => {
                 )}
             </header>
 
-            {/* Contact Form Section */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen w-full px-4 sm:px-8 md:px-12 lg:px-24">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">Contact Us</h2>
-                <p className="text-gray-300 mt-2 text-sm sm:text-base">We'd love to hear from you!</p>
-                <form className="mt-6 w-full max-w-lg bg-gray-800 p-6 rounded-lg shadow-lg" onSubmit={handleSubmit}>
-                    <input type="text" name="name" placeholder="Your Name" className="w-full p-3 rounded-md bg-gray-900 text-white mb-4" onChange={handleChange} required />
-                    <input type="email" name="email" placeholder="Your Email" className="w-full p-3 rounded-md bg-gray-900 text-white mb-4" onChange={handleChange} required />
-                    <textarea name="message" placeholder="Your Message" className="w-full p-3 rounded-md bg-gray-900 text-white mb-4" rows="4" onChange={handleChange} required></textarea>
-                    <button type="submit" className="w-full bg-red-600 text-white py-2 rounded-md">Send Message</button>
+            {/* Booking Form */}
+            <div className="relative w-full max-w-lg bg-white p-6 rounded-lg shadow-lg mt-20 z-10">
+                <h2 className="text-2xl font-bold text-center text-gray-800">Book Our Services</h2>
+                <form className="mt-6" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="firstName" placeholder="First Name" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                        <input type="text" name="middleName" placeholder="Middle Name (Optional)" className="p-3 border rounded-md w-full" onChange={handleChange} />
+                        <input type="text" name="lastName" placeholder="Last Name" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                        <input type="text" name="mobileNumber" placeholder="Mobile Number" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                    </div>
+                    <input type="email" name="email" placeholder="Email ID" className="p-3 border rounded-md w-full mt-4" onChange={handleChange} required />
+                    <textarea name="message" placeholder="Your Message" className="p-3 border rounded-md w-full mt-4" rows="3" onChange={handleChange}></textarea>
+                    <select name="category" className="p-3 border rounded-md w-full mt-4" onChange={handleChange} required>
+                        <option value="">Choose Our Services</option>
+                        <option value="dance">Dance Classes</option>
+                        <option value="choreography">Choreography</option>
+                        <option value="fitness">Fitness Training</option>
+                        <option value="events">Event Performances</option>
+                        <option value="space">Space Creator</option>
+                    </select>
+                    <button type="submit" className="mt-6 w-full bg-yellow-500 text-white py-3 rounded-md hover:bg-yellow-600">Submit</button>
                 </form>
             </div>
-
-            {/* Social Media Section */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-[40vh] w-full px-4 sm:px-8 md:px-12 lg:px-24">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Follow Us</h2>
-                <p className="text-gray-300 mt-2 text-sm sm:text-base">Stay connected with us on social media</p>
-                <div className="relative z-10 flex flex-col items-center justify-center text-center w-full px-4 py-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Follow Us</h2>
-                    <div className="flex space-x-6 mt-4">
-                        <a href="#" className="text-white text-2xl hover:text-blue-500"><FiFacebook /></a>
-                        <a href="#" className="text-white text-2xl hover:text-pink-500"><FiInstagram /></a>
-                        <a href="#" className="text-white text-2xl hover:text-blue-400"><FiTwitter /></a>
-                        <a href="#" className="text-white text-2xl hover:text-red-600"><FiYoutube /></a>
-                    </div>
-                </div>
-            </div>
         </section>
-    </>
+    );
+};
 
-}
-
-export default contact;
+export default ServicesPage;
