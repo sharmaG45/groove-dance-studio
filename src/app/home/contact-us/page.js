@@ -5,7 +5,12 @@ import { FiMenu, FiX, FiFacebook, FiInstagram, FiTwitter, FiYoutube } from "reac
 const contact = () => {
 
     const [showMenu, setShowMenu] = useState(false);
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,8 +18,24 @@ const contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Form submitted successfully!");
+
+        fetch("https://script.google.com/macros/s/AKfycbzRpIuukdH2cIYe8GwOrkbI8fJWH3S_r5vtvVH1iXIyJjSCTJhdEYaQknhxnPogJMBCiw/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(() => {
+                alert("Form submitted successfully!");
+                setFormData({ name: "", email: "", message: "" });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
     };
+
 
     const slides = ["/assets/images/pic1.jpg"];
 

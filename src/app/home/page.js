@@ -12,6 +12,7 @@ import { EffectFade, Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 const HomePage = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const [isOpenBookingForm, setIsOpenBookingForm] = useState(false);
 
     const router = useRouter();
 
@@ -19,14 +20,20 @@ const HomePage = () => {
         router.push('/home/about-us');
     }
 
-
-
     const slides = [
         "/assets/images/pic1.jpg",
         "/assets/images/pic2.jpg",
         "/assets/images/pic3.jpg",
         "/assets/images/pic4.jpg"
     ];
+
+    const Studioslides = [
+        "/assets/images/IMG_0133.jpg",
+        "/assets/images/IMG_0127.jpg",
+        "/assets/images/IMG_0129.jpg",
+        "/assets/images/IMG_0130.jpg",
+        "/assets/images/IMG_0131.jpg"
+    ]
 
     const courses = [
         {
@@ -81,6 +88,81 @@ const HomePage = () => {
                 "Join a vibrant community of dancers who share your enthusiasm for dance. Connect with like-minded individuals, make lasting friendships, and build a support system that encourages growth, creativity, and mutual respect.",
         },
     ];
+
+    const handleBookingDetails = () => {
+        setIsOpenBookingForm(!isOpenBookingForm);
+    }
+
+    const [formData, setFormData] = useState({
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        mobileNumber: "",
+        email: "",
+        message: "",
+        category: ""
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch("https://script.google.com/macros/s/AKfycbzwl3X5hweRJ8iQlaBVaX32CSRVfK3_mUa1r1iyUxx9g0Iws8TwSjSAgOe8MOjW8I0UDg/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(() => {
+                alert("Form submitted successfully!");
+                setFormData({
+                    firstName: "",
+                    middleName: "",
+                    lastName: "",
+                    mobileNumber: "",
+                    email: "",
+                    message: "",
+                    category: ""
+                });
+            })
+            .catch((error) => {
+                console.error("Error submitting form:", error);
+            });
+    };
+
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     fetch("https://script.google.com/macros/s/AKfycbzwl3X5hweRJ8iQlaBVaX32CSRVfK3_mUa1r1iyUxx9g0Iws8TwSjSAgOe8MOjW8I0UDg/exec", {
+    //         method: "POST",
+    //         mode: "no-cors", // No CORS response, but still works
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(formData)
+    //     })
+    //         .then(() => {
+    //             alert("Form submitted successfully!");
+    //             setFormData({
+    //                 firstName: "",
+    //                 middleName: "",
+    //                 lastName: "",
+    //                 mobileNumber: "",
+    //                 email: "",
+    //                 message: "",
+    //                 category: ""
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error submitting form:", error);
+    //         });
+    // };
 
     return <>
 
@@ -155,7 +237,10 @@ const HomePage = () => {
                     <h2 className="text-2xl sm:text-4xl font-semibold">Welcome to</h2>
                     <h1 className="text-4xl sm:text-6xl font-bold">The Groove to Move</h1>
                     <h2 className="text-lg sm:text-2xl">Patna's Leading Dance Academy</h2>
-                    <a href="/home/booking-details" className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-lg transition-all duration-300">
+                    <a
+                        className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-lg transition-all duration-300 cursor-pointer"
+                        onClick={handleBookingDetails}
+                    >
                         Book Us Now
                     </a>
                 </div>
@@ -271,7 +356,7 @@ const HomePage = () => {
                         effect="fade"
                         className="w-full rounded-lg shadow-lg"
                     >
-                        {slides.map((slide, index) => (
+                        {Studioslides.map((slide, index) => (
                             <SwiperSlide key={index}>
                                 <div className="w-full h-80 md:h-96 lg:h-[550px] flex items-center justify-center bg-gray-200">
                                     <img
@@ -355,11 +440,46 @@ const HomePage = () => {
                     ))}
                 </div>
             </div>
-
-            {/* contact us */}
-
-
         </div>
+
+        {/* Booking form modal */}
+
+        {isOpenBookingForm && (
+            <>
+
+                {/* Modal */}
+                <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-lg">
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-2xl font-bold text-gray-800">Book Our Services</h2>
+                        <button onClick={handleBookingDetails} className="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+                    </div>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" name="firstName" placeholder="First Name" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                            <input type="text" name="middleName" placeholder="Middle Name (Optional)" className="p-3 border rounded-md w-full" onChange={handleChange} />
+                            <input type="text" name="lastName" placeholder="Last Name" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                            <input type="text" name="mobileNumber" placeholder="Mobile Number" className="p-3 border rounded-md w-full" onChange={handleChange} required />
+                        </div>
+
+                        <input type="email" name="email" placeholder="Email ID" className="p-3 border rounded-md w-full mt-4" onChange={handleChange} required />
+
+                        <textarea name="message" placeholder="Your Message" className="p-3 border rounded-md w-full mt-4" rows="3" onChange={handleChange}></textarea>
+
+                        <select name="category" className="p-3 border rounded-md w-full mt-4" onChange={handleChange} required>
+                            <option value="">Choose Our Services</option>
+                            <option value="dance">Dance Classes</option>
+                            <option value="choreography">Choreography</option>
+                            <option value="fitness">Fitness Training</option>
+                            <option value="events">Event Performances</option>
+                            <option value="space">Space Creator</option>
+                        </select>
+
+                        <button type="submit" className="mt-6 w-full bg-yellow-500 text-white py-3 rounded-md hover:bg-yellow-600">Submit</button>
+                    </form>
+                </div>
+            </>
+        )}
 
     </>
 }
