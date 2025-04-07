@@ -341,33 +341,39 @@ const HomePage = () => {
                 <svg className="absolute top-0 left-0 w-full" viewBox="0 0 1440 320">
                     <path fill="#fff" d="M0,160L80,149.3C160,139,320,117,480,133.3C640,149,800,203,960,208C1120,213,1280,171,1360,149.3L1440,128V0H0Z"></path>
                 </svg>
-                <h2 className="text-3xl md:text-5xl font-bold text-black relative">Our Creator Space</h2>
-                <button className="mt-4 px-6 py-3 bg-yellow-500 text-white font-semibold rounded-md">BOOK NOW</button>
+                <h2 className="text-3xl md:text-5xl font-bold text-black relative z-10">Our Creator Space</h2>
+
+                <button className="mt-6 px-6 py-3 bg-yellow-500 text-white font-semibold rounded-md relative z-10">
+                    BOOK NOW
+                </button>
+
 
                 <div className="relative w-full max-w-6xl mx-auto py-12">
-                    <Swiper
-                        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        loop
-                        autoplay={{ delay: 3000 }}
-                        pagination={{ clickable: true }}
-                        navigation
-                        effect="fade"
-                        className="w-full rounded-lg shadow-lg"
-                    >
-                        {Studioslides.map((slide, index) => (
-                            <SwiperSlide key={index}>
-                                <div className="w-full h-80 md:h-96 lg:h-[550px] flex items-center justify-center bg-gray-200">
-                                    <img
-                                        src={slide}
-                                        alt={`Slide ${index + 1}`}
-                                        className="w-full h-full object-cover rounded-lg"
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                <Swiper
+  modules={[Navigation, Pagination, Autoplay, EffectFade]}
+  spaceBetween={30}
+  slidesPerView={1}
+  loop
+  autoplay={{ delay: 3000 }}
+  pagination={{ clickable: true }}
+  navigation
+  effect="fade"
+  className="w-full h-[300px] md:h-[400px] lg:h-[550px]"
+>
+  {Studioslides.map((slide, index) => (
+    <SwiperSlide key={index}>
+      <div className="w-full h-full flex items-center justify-center bg-gray-200">
+        <img
+          src={slide}
+          alt={`Slide ${index + 1}`}
+          className="w-full h-full object-cover rounded-lg"
+        />
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+
                 </div>
 
             </div>
